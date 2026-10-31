@@ -1,0 +1,19 @@
+services:
+  golnk:
+    build: .
+    container_name: golnk
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - GOLNK_ADDR=:8080
+      - GOLNK_FILE=/data/data.json
+      # プロキシ環境変数 (必要に応じて設定)
+      # - HTTP_PROXY=http://proxy:8080
+      # - HTTPS_PROXY=http://proxy:8080
+      # - NO_PROXY=localhost,127.0.0.1
+    volumes:
+      - golnk-data:/data
+
+volumes:
+  golnk-data:
